@@ -10,6 +10,7 @@
         android:layout_marginLeft="160dp"
         android:layout_marginTop="70dp"
         android:text="LOGIN"
+        android:textColor="#030303"
         android:textSize="24sp" />
 
     <EditText
@@ -33,7 +34,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/log_button"
+        android:id="@+id/log_buttonLog"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="130dp"
