@@ -1,0 +1,10 @@
+Frontend Client:
+single page app
+ 
+	de pe web nu voteaza nima
+	prima pagina : 
+		polling events din db	
+		statistici evenimente  din carusel
+	
+	pagina administrator adauga events props ore event
+vue.js + vuetify 
