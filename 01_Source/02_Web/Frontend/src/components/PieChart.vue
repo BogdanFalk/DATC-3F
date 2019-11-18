@@ -1,12 +1,14 @@
 <template>
   <svg class="pie">
     <circle
-      v-for="item in dataObjects"
+      v-for="(item,index) in dataObjects"
+      :key="index"
       v-bind:style="{strokeDasharray: `${item.relativeSize} ${circleLength}`, strokeDashoffset: item.offset}"
       r="25%"
       cx="50%"
       cy="50%"
     />
+    <h4>List of statistics put right hereeeee</h4>
   </svg>
 </template>
 <script>

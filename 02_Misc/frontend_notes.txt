@@ -1,4 +1,5 @@
 Frontend Client:
+
 single page app
  
 	de pe web nu voteaza nima
@@ -8,3 +9,9 @@ single page app
 	
 	pagina administrator adauga events props ore event
 vue.js + vuetify 
+
+statistici
+event : Alegeri Tip
+candidati cu poze nume descriere
+cronometru de vot : ora curenta ,ora sttart vot , ora stop vot.
+
