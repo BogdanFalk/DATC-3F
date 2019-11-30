@@ -16,6 +16,13 @@ print (bcolors.OKGREEN + "Deploy to Heroku!" + bcolors.ENDC)
 print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
 
+print (bcolors.OKBLUE + "Build Frontend" + bcolors.ENDC)
+os.system("cd 01_Source/02_Web/Frontend")
+os.system("npm run build")
+os.system("cd ..")
+os.system("cd ..")
+os.system("cd ..")
+
 print (bcolors.OKBLUE + "Adding new files" + bcolors.ENDC)
 os.system("git add .")
 
