@@ -128,7 +128,11 @@ export default {
   margin-bottom: 40px;
 
 }
-.carousel v-btn{
+.carousel .v-window__prev{
+  position: fixed!important;
+}
+
+.carousel .v-window__next{
   position: fixed!important;
 }
 </style>
