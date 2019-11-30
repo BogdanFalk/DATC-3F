@@ -17,7 +17,7 @@ print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
 
 print (bcolors.OKBLUE + "Build Frontend" + bcolors.ENDC)
-os.system("")
+# os.system("")
 os.system("cd 01_Source/02_Web/Frontend && npm run build")
 os.system("cd ..")
 os.system("cd ..")
