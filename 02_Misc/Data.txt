@@ -1,0 +1,24 @@
+Events:
+1) Parlamentare :
+ - votam partide
+	- Fiecare Partid (Nume, Sigla, Descriere, Nr voturi tara, Nr voturi diaspora) // Bar Chart diaspora + tara
+	
+
+2) Europarlamentare :
+ - votam partide
+
+3) Prezidentiale :
+ - votam oameni
+	- Fiecare Canditat (Nume, Fata, Partid, Descriere, Nr voturi tara, Nr voturi diaspora) // Bar Chart diaspora + tara
+	- Statisca generala (Overall) // Pie Chart cu toti retardatii
+
+4) Refendum :
+ - votam da sau nu 
+	- Intrebare
+	- Bar Graph una Da si una Nu
+
+Event Comun Data:
+	- Title
+	- Date
+	
+

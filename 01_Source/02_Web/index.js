@@ -3,7 +3,7 @@ var path = require('path');
 var serveStatic = require('serve-static');
 var logging = require(__dirname + "/Backend/logging.js")
 var serverAPIs = require(__dirname + "/Backend/serverAPIs.js")
-// var serverDB = require(__dirname+ "/Backend/herokuMariaDB.js")
+var serverDB = require(__dirname+ "/Backend/herokuMariaDB.js")
 
 
 const app = express();

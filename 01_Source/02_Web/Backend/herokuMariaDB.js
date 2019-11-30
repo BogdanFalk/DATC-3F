@@ -4,9 +4,9 @@ let logging = require(__dirname+"/logging.js")
 
 const DB_CONFIG = {
     host: 'eu-cdbr-west-02.cleardb.net',
-    user: 'bfbe415e9273cc',
-    password: '3a4de949',
-    database: 'heroku_62f9169e5b0ff7a'
+    user: 'b932cb50edc7bf',
+    password: 'ef590f00',
+    database: 'heroku_45e2d6c06603277'
   };
 
 const DELETEONLOAD = true;
