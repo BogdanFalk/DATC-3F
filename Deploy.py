@@ -13,7 +13,16 @@ class bcolors:
 
 print (bcolors.OKGREEN + "Deploy to Heroku!" + bcolors.ENDC)
 
+print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
+
+print (bcolors.OKBLUE + "Adding new files" + bcolors.ENDC)
 os.system("git add .")
+
+print (bcolors.OKBLUE + "Commiting files" + bcolors.ENDC)
 os.system("git commit -m \"Deploy to Heroku\"")
+
+print (bcolors.FAIL + "Pushing to Heroku!" + bcolors.ENDC)
 os.system("git subtree push --prefix 01_Source/02_Web heroku master")
+
+print (bcolors.HEADER + "Done.." + bcolors.ENDC)
