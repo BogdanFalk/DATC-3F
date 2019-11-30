@@ -5,4 +5,4 @@ git add .
 git commit -m "Deploy for Heroku"
 echo %CD%
 
-git subtree push
+git push
