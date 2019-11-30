@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id ="vAppId">
     <v-content>
       <!-- <HelloWorld/> -->
       <Home/>
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style>
-
+#vAppId{
+  height:100vh; /* set parent height for carousel full screen */
+}
 </style>
