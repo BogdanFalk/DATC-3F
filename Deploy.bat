@@ -1,7 +1,5 @@
 @echo OFF
 echo Deploy to Heroku
-cd ..
-cd ..
 echo %CD%
 git add .
 git commit -m "Deploy for Heroku"
