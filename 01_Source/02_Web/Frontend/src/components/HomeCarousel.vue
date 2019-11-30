@@ -15,11 +15,6 @@
                   <v-card-text class="text--primary">
                     <div>{{candidate.description}}</div>
                   </v-card-text>
- 
-                  <v-card-actions class="justify-center">
-                    <v-btn text>Previous Candidate</v-btn>
-                    <v-btn text>Next Candidate</v-btn>
-                  </v-card-actions>
                 </v-card>
               </v-flex>
             </div>
