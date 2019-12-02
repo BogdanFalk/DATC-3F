@@ -30,11 +30,11 @@ public class LogIn extends Activity {
         });
     }
     private void loginCheck( final String name, final String cnp) {
-        if(log_editName.getText().toString().equals("admin") && log_editCNP.getText().toString().equals("admin")){
+        if(log_editName.getText().toString().equals("admin") && log_editCNP.getText().toString().equals("1234567891234")){
             //correcct password
             Toast.makeText(getApplicationContext(),
                     "Redirecting...",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LogIn.this, Alegeri.class));
+            startActivity(new Intent(LogIn.this, Vot.class));
         }else {
             //wrong password
             Toast.makeText(getApplicationContext(),

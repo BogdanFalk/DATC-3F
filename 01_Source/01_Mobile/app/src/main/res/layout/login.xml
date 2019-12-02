@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/back">
 
     <TextView
         android:id="@+id/log_textViewTitle"
@@ -17,27 +18,35 @@
         android:id="@+id/log_editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
+        android:hint="Name: Popescu Ionel"
+        android:textAlignment="center"
         android:ems="10"
+        android:textSize="18dp"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/log_editCNP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
+        android:textAlignment="center"
+        android:hint="CNP: 1234567645363"
+        android:textSize="18dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/log_buttonLog"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:text="Login" />
 </LinearLayout>

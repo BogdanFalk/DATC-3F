@@ -3,7 +3,8 @@
     android:id="@+id/vot_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/back">
 
     <LinearLayout
         android:id="@+id/vot_layoutCandidates"
@@ -26,16 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"/>
 
-            <RadioButton
-                android:id="@+id/radio_pirates"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="Vot Null"
-                android:textSize="18sp" />
-        </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
@@ -52,5 +45,6 @@
             android:text="Vote"
             android:textSize="18sp" />
     </LinearLayout>
+
 
 </LinearLayout>
