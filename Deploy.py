@@ -30,7 +30,7 @@ print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
 
 directory  = './01_Source/02_Web/Frontend'
-md5hash    = dirhash(directory, 'md5',excluded_extensions=['.js','.ts'])
+md5hash    = dirhash(directory, 'md5',excluded_extensions=['.js','.ts','.md','.json'])
 
 with open('pyhonReq.txt', 'w') as the_file:
     the_file.write(md5hash)
