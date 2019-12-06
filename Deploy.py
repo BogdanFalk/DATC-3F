@@ -30,6 +30,6 @@ print (bcolors.OKBLUE + "Commiting files" + bcolors.ENDC)
 os.system("git commit -m \"Deploy to Heroku\"")
 
 print (bcolors.FAIL + "Pushing to Heroku!" + bcolors.ENDC)
-os.system("git subtree push --prefix 01_Source/02_Web heroku master")
+os.system("git subtree push --prefix 01_Source/02_Web heroku")
 
 print (bcolors.HEADER + "Done.." + bcolors.ENDC)

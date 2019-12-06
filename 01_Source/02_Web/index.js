@@ -3,7 +3,8 @@ var path = require('path');
 var serveStatic = require('serve-static');
 var logging = require(__dirname + "/Backend/logging.js")
 var serverAPIs = require(__dirname + "/Backend/serverAPIs.js")
-var serverDB = require(__dirname+ "/Backend/herokuMariaDB.js")
+var serverDB = require(__dirname+ "/Backend/herokuClearDB.js")
+var serverMQTT = require(__dirname + "/Backend/herokuCloudMQTT.js")
 
 
 const app = express();
@@ -18,3 +19,4 @@ app.use(serveStatic(__dirname + "/Frontend/dist"));
 
 
 serverAPIs.getContacts(app)
+serverDB.connectToDB()
