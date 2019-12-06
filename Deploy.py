@@ -40,17 +40,15 @@ try:
 except FileNotFoundError:
     print("File not found")    
 
-
-print(size)
-with open('pythonReq.txt', 'w') as the_file:
-    the_file.write(md5hash)
-
-print (bcolors.OKBLUE + "Build Frontend" + bcolors.ENDC)
-# os.system("")
-os.system("cd 01_Source/02_Web/Frontend && npm run build")
-os.system("cd ..")
-os.system("cd ..")
-os.system("cd ..")
+if(md5hash != size):
+    with open('pythonReq.txt', 'w') as the_file:
+        the_file.write(md5hash)
+    print (bcolors.OKBLUE + "Build Frontend" + bcolors.ENDC)
+    # os.system("")
+    os.system("cd 01_Source/02_Web/Frontend && npm run build")
+    os.system("cd ..")
+    os.system("cd ..")
+    os.system("cd ..")
 
 print (bcolors.OKBLUE + "Adding new files" + bcolors.ENDC)
 os.system("git add .")
