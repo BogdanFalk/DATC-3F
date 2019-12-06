@@ -49,6 +49,8 @@ if(md5hash != size):
     os.system("cd ..")
     os.system("cd ..")
     os.system("cd ..")
+else:
+    print (bcolors.HEADER + "No new updates on frontend" + bcolors.ENDC)    
 
 print (bcolors.OKBLUE + "Adding new files" + bcolors.ENDC)
 os.system("git add .")
