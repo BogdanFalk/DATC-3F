@@ -1,4 +1,5 @@
 import os
+import sys
 
 class bcolors:
     HEADER = '\033[95m'
@@ -33,3 +34,14 @@ print (bcolors.FAIL + "Pushing to Heroku!" + bcolors.ENDC)
 os.system("git subtree push --prefix 01_Source/02_Web heroku")
 
 print (bcolors.HEADER + "Done.." + bcolors.ENDC)
+
+url = "https://voting-system-3f.herokuapp.com"
+if sys.platform=='win32':
+    os.startfile(url)
+elif sys.platform=='darwin':
+    subprocess.Popen(['open', url])
+else:
+    try:
+        subprocess.Popen(['xdg-open', url])
+    except OSError:
+        print('Please open a browser on: ' + url)
