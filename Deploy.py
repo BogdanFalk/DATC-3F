@@ -1,4 +1,12 @@
+
 import os
+
+try:
+    import checksumdir
+except ImportError:
+    print("Installing Checksumdir Module")
+    os.system('python -m pip install checksumdir')
+
 import sys
 
 class bcolors:
