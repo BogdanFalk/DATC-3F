@@ -32,7 +32,17 @@ os.system("git pull")
 directory  = './01_Source/02_Web/Frontend'
 md5hash    = dirhash(directory, 'md5',excluded_extensions=['.ts','.md','.json','.yml',"LICENSE",".npmignore",".eslintrc"])
 
-with open('pyhonReq.txt', 'w') as the_file:
+size = 0
+
+try:
+    with open('pythonReq.txt', 'r') as frontEndSize:
+        size = frontEndSize.readline()
+except FileNotFoundError:
+    print("File not found")    
+
+
+print(size)
+with open('pythonReq.txt', 'w') as the_file:
     the_file.write(md5hash)
 
 print (bcolors.OKBLUE + "Build Frontend" + bcolors.ENDC)
