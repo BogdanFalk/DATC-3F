@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -38,7 +40,11 @@ public class Vot extends Activity {
         vot_btnVot = (Button) findViewById(R.id.vot_btnVote);
         createText_vot();
         RadioButton vot_btnNull = new RadioButton(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(100, 10, 20, 10);
+        vot_btnNull.setLayoutParams(params);
         vot_btnNull.setText("Vot NULL"); //ia din baza de date numele
+        vot_btnNull.setTextColor(Color.parseColor("#FCF7F7"));
         vot_btnNull.setTextSize(18);
         LinearLayout layout = (LinearLayout) findViewById(R.id.vot_layoutCandidates);
         layout.addView(vot_btnNull);
@@ -93,10 +99,14 @@ public class Vot extends Activity {
     }
     public void createText_vot(){
         int i;
-        int nr_candidati=3; //numara cati candidati ia din baza de date si formeaza text
+        int nr_candidati=5; //numara cati candidati ia din baza de date si formeaza text
         for(i=0; i<nr_candidati;i++) {
             RadioButton vot_btnCandidati= new RadioButton(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(100, 10, 20, 10);
+            vot_btnCandidati.setLayoutParams(params);
             vot_btnCandidati.setText("Press Me"); //ia din baza de date numele
+            vot_btnCandidati.setTextColor(Color.parseColor("#FCF7F7"));
             vot_btnCandidati.setTextSize(18);
             LinearLayout layout = (LinearLayout) findViewById(R.id.vot_layoutCandidates);
             layout.addView(vot_btnCandidati);

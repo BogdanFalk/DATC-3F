@@ -14,13 +14,14 @@
 
         <TextView
             android:id="@+id/vot_textViewTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
             android:layout_marginTop="50dp"
-            android:text="Candidates"
-            android:textColor="#030303"
-            android:textSize="24sp" />
+            android:layout_marginBottom="30dp"
+            android:text="CANDIDATES"
+            android:textAlignment="center"
+            android:textColor="#FDFAFA"
+            android:textSize="30sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
