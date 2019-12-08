@@ -28,7 +28,7 @@ print (bcolors.OKGREEN + "Deploy to Heroku!" + bcolors.ENDC)
 
 print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
-
+print (bcolors.OKBLUE + "Checking Difference on Front end excluding following files from difference: ['.ts','.md','.json','.yml','LICENSE','.npmignore','.eslintrc','.js']" + bcolors.ENDC)
 directory  = './01_Source/02_Web/Frontend'
 md5hash    = dirhash(directory, 'md5',excluded_extensions=['.ts','.md','.json','.yml',"LICENSE",".npmignore",".eslintrc",".js"])
 
@@ -64,14 +64,17 @@ os.system("git subtree push --prefix 01_Source/02_Web heroku master")
 print (bcolors.HEADER + "Done.." + bcolors.ENDC)
 
 
-print (bcolors.FAIL + "Want to open page? (Y/N):" + bcolors.ENDC)
-url = "https://voting-system-3f.herokuapp.com"
-if sys.platform=='win32':
-    os.startfile(url)
-elif sys.platform=='darwin':
-    subprocess.Popen(['open', url])
-else:
-    try:
-        subprocess.Popen(['xdg-open', url])
-    except OSError:
-        print('Please open a browser on: ' + url)
+g="A"
+while (g!="Y" or "N"):
+    g=input(bcolors.FAIL + "Want to open page? (Y/N):" + bcolors.ENDC)
+    if(g=="Y"):    
+        url = "https://voting-system-3f.herokuapp.com"
+        if sys.platform=='win32':
+            os.startfile(url)
+        elif sys.platform=='darwin':
+            subprocess.Popen(['open', url])
+        else:
+            try:
+                subprocess.Popen(['xdg-open', url])
+            except OSError:
+                print('Please open a browser on: ' + url)
