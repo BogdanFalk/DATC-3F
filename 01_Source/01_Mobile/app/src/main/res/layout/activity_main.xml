@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back">
+    android:background="@drawable/back"
+   >
+
+    <TextView
+        android:id="@+id/main_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="50dp"
+        android:text="ELECTION DAY"
+        android:textAlignment="center"
+        android:textColor="#FDFBFB"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/wel_imgViewLogo"
+        android:layout_width="421dp"
+        android:layout_height="188dp"
+        android:layout_marginBottom="300dp"
+        android:src="@drawable/logovot" />
 
     <Button
         android:id="@+id/main_butnNext"
         android:layout_width="124dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="150dp"
         android:text="Next"
         android:textSize="18sp" />
+
 </LinearLayout>

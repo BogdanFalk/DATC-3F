@@ -11,7 +11,7 @@
         android:layout_marginLeft="160dp"
         android:layout_marginTop="70dp"
         android:text="LOGIN"
-        android:textColor="#030303"
+        android:textColor="#F8F4F4"
         android:textSize="24sp" />
 
     <EditText
@@ -22,11 +22,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
-        android:hint="Name: Popescu Ionel"
-        android:textAlignment="center"
         android:ems="10"
-        android:textSize="18dp"
-        android:inputType="textPersonName" />
+        android:hint="Name: Popescu Ionel"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#F8F6F6"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/log_editCNP"
@@ -36,11 +40,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
-        android:textAlignment="center"
-        android:hint="CNP: 1234567645363"
-        android:textSize="18dp"
         android:ems="10"
-        android:inputType="phone" />
+        android:hint="CNP: 1234567645363"
+        android:inputType="phone"
+        android:textAlignment="center"
+        android:textColor="#F7F6F6"
+        android:textColorHighlight="#F7F6F6"
+        android:textColorHint="#F7F6F6"
+        android:textColorLink="#F7F6F6"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/log_buttonLog"

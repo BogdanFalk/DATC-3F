@@ -48,8 +48,11 @@
 
 
             <v-flex xs12 sm6 md4>
-              <v-card>
-                <PieChart></PieChart>
+              <v-card class="statistics" v-if="event.eventTitle==='Referendum'">
+                <barChartQuestions ></barChartQuestions>
+              </v-card>
+              <v-card class="statistics" v-else>
+                <PieChart :candidates=event.eventCandidates></PieChart>
               </v-card>
             </v-flex>
           </v-layout>
@@ -60,8 +63,9 @@
 </template>
 <script>
 import PieChart from "../components/PieChart.vue";
+import barChartQuestions from "../components/barChartQuestions.vue";
 export default {
-  components: { PieChart },
+  components: { barChartQuestions,PieChart},
   data() {
     return {
       colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
@@ -76,7 +80,8 @@ export default {
               face:
                 "https://mediacdn.libertatea.ro/unsafe/375x285/smart/filters:contrast(8):quality(80)/https://static4.libertatea.ro/wp-content/uploads/2014/11/klaus_04_146ab53f00.jpg",
               party: "Mon party is PLM",
-              description: "Mare gg man."
+              description: "Mare gg man.",
+              numberVotes: 22
             },
             {
               id: 2,
@@ -84,14 +89,16 @@ export default {
               face:
                 "https://www.b1.ro/thumbs/landscape_big/2019/11/18/rezultate-alegeri-2019-exit-poll-alegeri-prezidentiale-2019-rezultate-bec-iohannis-sau-dancila-viorica-dancila-la-dna-401900.jpg",
               party: "Mon party is NSFS",
-              description: "Sefu mai mic"
+              description: "Sefu mai mic",
+              numberVotes: 50
             },
             {
               id: 3,
               name: "John ChinaMan",
               face: "https://semantic-ui.com/images/avatar2/large/molly.png",
               party: "party KGJ",
-              description: "Mare gg man."
+              description: "Mare gg man.",
+              numberVotes: 17
             }
           ]
         },
@@ -134,5 +141,8 @@ export default {
 
 .carousel .v-window__next{
   position: fixed!important;
+}
+.statistics{
+   margin-bottom: 100px;
 }
 </style>
