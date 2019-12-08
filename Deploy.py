@@ -30,7 +30,7 @@ print (bcolors.OKBLUE + "Inital Pull" + bcolors.ENDC)
 os.system("git pull")
 
 directory  = './01_Source/02_Web/Frontend'
-md5hash    = dirhash(directory, 'md5',excluded_extensions=['.ts','.md','.json','.yml',"LICENSE",".npmignore",".eslintrc"])
+md5hash    = dirhash(directory, 'md5',excluded_extensions=['.ts','.md','.json','.yml',"LICENSE",".npmignore",".eslintrc",".js"])
 
 size = 0
 
@@ -64,7 +64,7 @@ os.system("git subtree push --prefix 01_Source/02_Web heroku master")
 print (bcolors.HEADER + "Done.." + bcolors.ENDC)
 
 
-
+print (bcolors.FAIL + "Want to open page? (Y/N):" + bcolors.ENDC)
 url = "https://voting-system-3f.herokuapp.com"
 if sys.platform=='win32':
     os.startfile(url)
