@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -39,92 +40,63 @@ public class Vot extends Activity {
         vot_RelativeLayout = (LinearLayout) findViewById(R.id.vot_layout);
         vot_btnVot = (Button) findViewById(R.id.vot_btnVote);
         createText_vot();
+            vot_btnVot.setOnClickListener(new View.OnClickListener() {
+                RadioGroup radioGroup = (RadioGroup)findViewById(R.id.vot_groupButtons);
+                @Override
+                public void onClick(View v) {
+                    if(radioGroup.getCheckedRadioButtonId()== -1) {
+                        Toast.makeText(getApplicationContext(),
+                                "You need to vote one.", Toast.LENGTH_SHORT).show();
+                        radioGroup.clearCheck();
+                    }
+                    if(radioGroup.getCheckedRadioButtonId()!=-1) {
+                        Toast.makeText(getApplicationContext(),
+                                "Voting...", Toast.LENGTH_SHORT).show();
+                        LayoutInflater inflater = (LayoutInflater) vot_Context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                        View customView = inflater.inflate(R.layout.custom_layout, null);
+                        vot_PopupWindow = new PopupWindow(
+                                customView,
+                                vot_params.WRAP_CONTENT,
+                                vot_params.WRAP_CONTENT
+                        );
+                        ImageButton custom_closeButton = (ImageButton) customView.findViewById(R.id.custom_btnClose);
+                        custom_closeButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // Dismiss the popup window
+                                vot_PopupWindow.dismiss();
+                                radioGroup.clearCheck();
+                                startActivity(new Intent(Vot.this, Alegeri.class));
+                            }
+                        });
+
+                        vot_PopupWindow.showAtLocation(vot_RelativeLayout, Gravity.CENTER, 0, 0);
+
+                    }
+
+                }
+            });
+    }
+
+    public void createText_vot() {
+        int i;
+        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.vot_groupButtons);
+        int nr_candidati = 5; //numara cati candidati ia din baza de date si formeaza text
+        for (i = 0; i < nr_candidati; i++) {
+            RadioButton vot_btnCandidati = new RadioButton(this);
+            vot_btnCandidati.setText("Press me"); //ia din baza de date numele
+            vot_btnCandidati.setTextColor(Color.parseColor("#FCF7F7"));
+            vot_btnCandidati.setTextSize(18);
+            radioGroup.addView(vot_btnCandidati);
+
+            }
         RadioButton vot_btnNull = new RadioButton(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(100, 10, 20, 10);
-        vot_btnNull.setLayoutParams(params);
         vot_btnNull.setText("Vot NULL"); //ia din baza de date numele
         vot_btnNull.setTextColor(Color.parseColor("#FCF7F7"));
         vot_btnNull.setTextSize(18);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.vot_layoutCandidates);
-        layout.addView(vot_btnNull);
-        vot_btnVot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),
-                        "Voting...",Toast.LENGTH_SHORT).show();
-
-
-                    LayoutInflater inflater = (LayoutInflater) vot_Context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View customView = inflater.inflate(R.layout.custom_layout, null);
-                    vot_PopupWindow = new PopupWindow(
-                            customView,
-                            vot_params.WRAP_CONTENT,
-                            vot_params.WRAP_CONTENT
-                    );
-                    ImageButton custom_closeButton = (ImageButton) customView.findViewById(R.id.custom_btnClose);
-                    custom_closeButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // Dismiss the popup window
-                            vot_PopupWindow.dismiss();
-                            startActivity(new Intent(Vot.this, Alegeri.class));
-                        }
-                    });
-
-                    vot_PopupWindow.showAtLocation(vot_RelativeLayout, Gravity.CENTER, 0, 0);
-
-//                else
-//                {
-//                    Toast.makeText(getApplicationContext(),
-//                            "You need to pick one...",Toast.LENGTH_SHORT).show();
-//                }
-
-
-            }
-//                else
-//                {
-//                    Toast.makeText(getApplicationContext(),
-//                            "You need to pick one...",Toast.LENGTH_SHORT).show();
-//                }
-
-
-
-            ///pop-up si buton sa te duca la LogIn back
-//                    startActivity(new Intent(LogIn.this, LogIn.class));
-
-        });
+        radioGroup.addView(vot_btnNull);
 
 
     }
-    public void createText_vot(){
-        int i;
-        int nr_candidati=5; //numara cati candidati ia din baza de date si formeaza text
-        for(i=0; i<nr_candidati;i++) {
-            RadioButton vot_btnCandidati= new RadioButton(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(100, 10, 20, 10);
-            vot_btnCandidati.setLayoutParams(params);
-            vot_btnCandidati.setText("Press Me"); //ia din baza de date numele
-            vot_btnCandidati.setTextColor(Color.parseColor("#FCF7F7"));
-            vot_btnCandidati.setTextSize(18);
-            LinearLayout layout = (LinearLayout) findViewById(R.id.vot_layoutCandidates);
-            layout.addView(vot_btnCandidati);
 
-        }
-    }
-    public boolean onRadioButtonClicked(View v) {
-        // Is the button now checked?
-        int check;
-        boolean checked = ((RadioButton) v).isChecked();
-        // Check which radio button was clicked
-        if (checked) {
-            return true;
-
-        } else {
-            return false;
-        }
-
-
-    }
 }

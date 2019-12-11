@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class LogIn extends Activity {
     Button log_btnLog;
@@ -42,16 +43,19 @@ public class LogIn extends Activity {
 
     private void loginCheck(final String name, final String cnp) {
         //if (log_editName.getText().toString().equals("admin") && log_editCNP.getText().toString().equals("1234567891234")) {
-        if (log_editName.getText().toString().equals("admin") && cnp_check() == true){
-            //correcct password
-            Toast.makeText(getApplicationContext(),
-                    "Redirecting...", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LogIn.this, Alegeri.class));
-        } else {
-            //wrong password
-            Toast.makeText(getApplicationContext(),
-                    "Wrong Credentials...", Toast.LENGTH_SHORT).show();
-        }
+     if (log_editName.getText().toString().length() > 7 && cnp_check() == true) {
+         Toast.makeText(getApplicationContext(),
+                   "Redirecting...", Toast.LENGTH_SHORT).show();
+           startActivity(new Intent(LogIn.this, Alegeri.class));
+     }
+     else if(log_editName.getText().toString().length() < 7 && cnp_check() == true )
+     {
+         Toast.makeText(getApplicationContext(),
+                    "Wrong Name...", Toast.LENGTH_SHORT).show();
+     }
+
+
+
 
     }
     public boolean cnp_check() {
@@ -91,7 +95,7 @@ public class LogIn extends Activity {
         int cod_verify = (2*sex + 7*year_1 + 9*year_2+1*month_1+4*month_2+day_1*6+day_2*3+judet_1*5+judet_2*8+2*nnn_1+7*nnn_2+9*nnn_3)%11;
         if (nr_caractere == 13) {
             if (sex > 1 && sex < 8) {
-                if(year < 99 && year > 60){
+                if((year <= 99 && year >= 60) || (year <=01 && year >= 00)){
                     if(month > 01 && month < 12){
                         if(day > 01 && day < 31){
                             if(judet >01 && judet < 41) {
@@ -99,7 +103,23 @@ public class LogIn extends Activity {
                                     if (cod == cod_verify) {
                                         return true;
                                     }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(),
+                                                "Wrong cod(last character)!", Toast.LENGTH_SHORT).show();
+                                        return false;
+                                    }
                                 }
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Wrong NNN!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(),
+                                        "Wrong judet!", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
