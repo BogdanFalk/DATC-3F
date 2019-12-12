@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   })
 
 
-sequelize.sync({ force: true } ) // { force: true } - To reset DB insert this inside the parenthesis
+sequelize.sync({ force: false,  logging: true } ) // { force: true } - To reset DB insert this inside the parenthesis
   .then(() => {
     app.listen(process.env.PORT || 5000, () => {
       logging.LOG(__filename, 40,`Server listening on port ${PORT}`)
@@ -50,4 +50,4 @@ app.use(serveStatic(__dirname + "/Frontend/dist"));
 
 
 serverAPIs.getContacts(app)
-serverDB.connectToDB()
+// serverDB.connectToDB()
