@@ -79,25 +79,25 @@ export default {
               name: "Klaus Iohannis",
               face:
                 "https://mediacdn.libertatea.ro/unsafe/375x285/smart/filters:contrast(8):quality(80)/https://static4.libertatea.ro/wp-content/uploads/2014/11/klaus_04_146ab53f00.jpg",
-              party: "Mon party is PLM",
-              description: "Mare gg man.",
+              party: "Party1",
+              description: "Candidates1Desc",
               numberVotes: 22
             },
             {
               id: 2,
-              name: "Vio",
+              name: "Viorica Dancila",
               face:
                 "https://www.b1.ro/thumbs/landscape_big/2019/11/18/rezultate-alegeri-2019-exit-poll-alegeri-prezidentiale-2019-rezultate-bec-iohannis-sau-dancila-viorica-dancila-la-dna-401900.jpg",
-              party: "Mon party is NSFS",
-              description: "Sefu mai mic",
+              party: "Party2",
+              description: "Candidates2Desc",
               numberVotes: 50
             },
             {
               id: 3,
-              name: "John ChinaMan",
+              name: "John China",
               face: "https://semantic-ui.com/images/avatar2/large/molly.png",
-              party: "party KGJ",
-              description: "Mare gg man.",
+              party: "Party3",
+              description: "Candidates3Desc",
               numberVotes: 17
             }
           ]
@@ -108,14 +108,14 @@ export default {
           Questions: [
             {
               questionId: 1,
-              questionTitle: "Vreti zacusca ?",
-              questionDetails: "Legea x presupune ca murim toti da its okay"
+              questionTitle: "Qtitle 1?",
+              questionDetails: "Qdetails 1"
             },
             {
               questionId: 2,
-              questionTitle: "Doriti muie ?",
+              questionTitle: "Qtitle 2?",
               questionDetails:
-                "Legea Y presupune ca noi sa fim sanatosi , viata e frumoasa"
+                "Qdetails 2"
             }
           ]
         }
