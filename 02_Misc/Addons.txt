@@ -2,3 +2,4 @@ CNP bans
 Secure FE
 MQTT Worker separat
 Idea: Passwords for everyone / SMS verify
+      Date difference from string to int: Today in int/Date - Birthday in int/Date > Value X
