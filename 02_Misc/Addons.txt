@@ -1,0 +1,4 @@
+CNP bans
+Secure FE
+MQTT Worker separat
+Idea: Passwords for everyone / SMS verify

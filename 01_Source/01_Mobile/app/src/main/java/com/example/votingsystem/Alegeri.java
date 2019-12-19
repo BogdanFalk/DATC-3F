@@ -33,7 +33,7 @@ public class Alegeri extends Activity {
             params.leftMargin = 250;
             params.topMargin = 50;
             aleg_btnEvents.setLayoutParams(params);
-           aleg_btnEvents.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            aleg_btnEvents.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             LinearLayout layout = (LinearLayout) findViewById(R.id.aleg_layout);
             layout.addView(aleg_btnEvents);
             aleg_btnEvents.setOnClickListener(new View.OnClickListener() {
