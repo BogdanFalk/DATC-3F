@@ -44,14 +44,10 @@ const getAllEventsWithAssociates = async (req, res) => {
             where: {
                 type: "presidential"
             },
-            attributes: [
-                "title", "type", "date",
-            ],
             include: [
                 {
                     model: Candidate,
-                    as: 'candidate',
-                    attributes: ["name", "eventId"]
+                    as: 'candidate'
                 }
             ]
 
@@ -61,14 +57,10 @@ const getAllEventsWithAssociates = async (req, res) => {
             where: {
                 type: "parliamentary"
             },
-            attributes: [
-                "title", "type", "date",
-            ],
             include: [
                 {
                     model: Party,
-                    as: 'party',
-                    attributes: ["name", "eventId"]
+                    as: 'party'
                 }
             ]
 
@@ -78,14 +70,10 @@ const getAllEventsWithAssociates = async (req, res) => {
             where: {
                 type: "referendum"
             },
-            attributes: [
-                "title", "type", "date",
-            ],
             include: [
                 {
                     model: Referendum,
-                    as: 'referendum',
-                    attributes: ["name", "eventId"]
+                    as: 'referendum'
                 }
             ]
 
@@ -121,7 +109,8 @@ const getEventWithAssociates = async (req, res) => {
                             include: [
                                 {
                                     model: Candidate,
-                                    as: 'candidate'
+                                    as: 'candidate',
+                                    attributes:["id","name","description","party","votesIn","votesOut"]
                                 }
                             ]
 

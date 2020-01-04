@@ -37,11 +37,9 @@
               >
                 <v-card class="mx-auto" max-width="344">
                   <v-card-title class="black--text">{{question.questionTitle}}</v-card-title>
-                  <v-card-subtitle class="pb-0">{{question.questionDetails}}</v-card-subtitle>
+              
 
-                  <v-card-text class="text--primary">
-                    <div>{{question.description}}</div>
-                  </v-card-text>
+                 
                 </v-card>
               </v-flex>
             </div>
@@ -120,7 +118,30 @@ export default {
                 "Qdetails 2"
             }
           ]
-        }
+        },
+         {
+          eventId: 3,
+          eventTitle: "Parliamentary",
+          eventParties: [
+            {
+              id: 1,
+              name: "PSD",
+              logo:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Partidul_Social_Democrat_logo.svg/1200px-Partidul_Social_Democrat_logo.svg.png",
+              description: "Candidates1Desc",
+              numberVotes: 22
+            },
+            {
+              id: 2,
+              name: "PNL",
+              face:
+                "https://upload.wikimedia.org/wikipedia/commons/2/24/National_Liberal_Party_Romania.png",
+              description: "Candidates2Desc",
+              numberVotes: 50
+            }
+            
+          ]
+        },
       ]
     };
   },
@@ -131,7 +152,67 @@ export default {
       axios.post("http://localhost:5000/api/event/getAllEventsWithAssociates")
       .then(
         response=>{
+          var events=[];
           console.log(response)
+          response.data.forEach(type => {
+            console.log(type);
+            type.forEach(event => {
+              console.log(event.type);
+              if(event.type==="presidential")
+              {
+                const newEvent={}
+                newEvent.eventId=event.id;
+                newEvent.eventTitle="Presidentials";
+                newEvent.eventCandidates=[]
+                event.candidate.forEach(candidate => {
+                  const newCandidate={}
+                  newCandidate.id=candidate.id;
+                  newCandidate.name=candidate.name;
+                  newCandidate.face=candidate.face;
+                  newCandidate.party=candidate.party;
+                  newCandidate.numberVotes=candidate.votesOut+candidate.votesIn;
+                  newEvent.eventCandidates.push(newCandidate);
+                });
+                events.push(newEvent);
+              }
+              if(event.type==="referendum")
+              {
+                
+                const newEvent={}
+                newEvent.eventId=event.id;
+                newEvent.eventTitle="Referendum";
+                newEvent.Questions=[]
+                event.referendum.forEach(referendum => {
+                  const newQuestion={}
+                  newQuestion.questionId=referendum.id;
+                  newQuestion.questionTitle=referendum.question;
+                  newEvent.Questions.push(newQuestion);
+                });
+                events.push(newEvent);
+              }
+              if(event.type==="parliamentary")
+              {
+                const newEvent={}
+                newEvent.eventId=event.id;
+                newEvent.eventTitle="Parliamentary";
+                newEvent.eventParties=[]
+                event.party.forEach(party=>{
+                  const newParty={}
+                  newParty.id=party.id;
+                  newParty.name=party.name;
+                  newParty.logo=party.logo;
+                  newParty.description=party.description;
+                  newParty.numberVotes=party.votesIn+party.votesOut;
+                  newEvent.eventParties.push(newParty);
+                })
+                events.push(newEvent);
+              }
+
+            });
+                  
+          });
+          console.log(events);
+          this.events=events;
         },
         error=>{
           console.log(error)
