@@ -219,12 +219,13 @@ export default {
         );
     }
   },
-  created: function() {
+  created: async function() {
     this.getAllEvents();
-    setTimeout(() => {
+   
       console.log("Emiting data for piechart");
-      this.$root.$emit("dataForPieChart", this.events[0]);
-    }, 500);
+      await this.$root.$emit("dataForPieChart", this.events[0]);
+      
+   
   }
 };
 </script>

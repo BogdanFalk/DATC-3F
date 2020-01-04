@@ -23,7 +23,7 @@ const addNewUser = async (req, res) => {
 
     if(flag)
     {
-      const newUser = await User.create({
+      const newUser = await User.findOrCreate({
         cnp
       });
       res.status(200).send("Can Vote");
@@ -35,7 +35,7 @@ const addNewUser = async (req, res) => {
    
 
   } catch (err) {
-    res.status(400).json({
+    res.status(400).send({
       error: err
     });
   }
