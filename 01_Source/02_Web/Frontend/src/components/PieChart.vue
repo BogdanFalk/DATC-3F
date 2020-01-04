@@ -3,35 +3,41 @@
 </template>
 
 <script>
+/* eslint-disable no-alert, no-console, no-unused-vars */
 import ApexCharts from "apexcharts";
 export default {
- props:{
-   candidatesFromHomeCarousel:{
-     type: Array,
-     required:true
-   },
- },
- name: "PieChart",
- mounted() {
-    var options = {
-      chart: {
-        type: 'donut',
-      },
-    
-      series:[60,20,10,10],
-      labels: ['Candidate1','Candidate2','Candidate3','Candidate4'],
-     
-      
-    
-    };
-    var chart = new ApexCharts(document.querySelector("#PieChart"), options);
+  data() {
+    return {};
+  },
+  mounted: function() {
+    var data = {};
+    this.$root.$on("dataForPieChart", dataForPiechart => {
+      console.log("Ain't nobody got time for that");
+      console.log(dataForPiechart);
+      data = dataForPiechart;
+    });
+    setTimeout(() => {
+      var options = {
+        chart: {
+          type: "donut"
+        },
 
-    chart.render();
+        series: [],
+        labels: []
+      };
+      console.log("Data:" + data);
+      data.eventCandidates.forEach(candidate => {
+        options.series.push(candidate.numberVotes);
+        options.labels.push(candidate.name);
+      });
+      console.log(options);
+      var chart = new ApexCharts(document.querySelector("#PieChart"), options);
+
+      chart.render();
+    }, 1500);
   }
 };
 </script>
 
 <style>
-
-
 </style>
