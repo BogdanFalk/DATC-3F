@@ -121,8 +121,7 @@ const getEventWithAssociates = async (req, res) => {
                             include: [
                                 {
                                     model: Candidate,
-                                    as: 'candidate',
-                                    attributes: ["name", "eventId"]
+                                    as: 'candidate'
                                 }
                             ]
 
@@ -150,8 +149,7 @@ const getEventWithAssociates = async (req, res) => {
                             include: [
                                 {
                                     model: Party,
-                                    as: 'party',
-                                    attributes: ["name", "eventId"]
+                                    as: 'party'
                                 }
                             ]
 
@@ -179,8 +177,7 @@ const getEventWithAssociates = async (req, res) => {
                             include: [
                                 {
                                     model: Referendum,
-                                    as: 'referendum',
-                                    attributes: ["name", "eventId"]
+                                    as: 'referendum'
                                 }
                             ]
 
@@ -267,7 +264,7 @@ module.exports = {
     },
 
     '/getAllEventsWithAssociates': {
-        get: {
+        post: {
             action: getAllEventsWithAssociates,
             level: 'public'
         }

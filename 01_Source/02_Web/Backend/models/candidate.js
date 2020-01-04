@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      party:{
+        type: DataTypes.STRING,
+        allowNull:false
+      },
       votesIn:{
           type: DataTypes.INTEGER,
           defaultValue : 0  

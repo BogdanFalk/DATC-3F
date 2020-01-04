@@ -62,8 +62,10 @@
   </div>
 </template>
 <script>
+/* eslint-disable no-alert, no-console, no-unused-vars */
 import PieChart from "../components/PieChart.vue";
 import barChartQuestions from "../components/barChartQuestions.vue";
+import axios from "axios"
 export default {
   components: { barChartQuestions,PieChart},
   data() {
@@ -121,6 +123,27 @@ export default {
         }
       ]
     };
+  },
+  methods:
+  {
+    getAllEvents()
+    {
+      axios.post("http://localhost:5000/api/event/getAllEventsWithAssociates")
+      .then(
+        response=>{
+          console.log(response)
+        },
+        error=>{
+          console.log(error)
+        }
+
+      )
+
+    }
+  },
+  created: function()
+  {
+    this.getAllEvents()
   }
 };
 </script>
