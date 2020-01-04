@@ -5,22 +5,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       cnp : {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-      },
-      voted_events: {
-        type: DataTypes.STRING,
-        allowNull: false
       },
     })
     // User.associate = function (models) {

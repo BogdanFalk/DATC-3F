@@ -81,7 +81,9 @@ public class Vot extends Activity {
     public void createText_vot() {
         int i;
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.vot_groupButtons);
-        int nr_candidati = 5; //numara cati candidati ia din baza de date si formeaza text
+        //numara cati candidati ia din baza de date si formeaza text
+        String candidates_name[]= {"0","1","2","3","4","5","6","7","8","9"};
+        int nr_candidati= candidates_name.length; //numara cate alegeri ia din baza de date
         for (i = 0; i < nr_candidati; i++) {
             RadioButton vot_btnCandidati = new RadioButton(this);
             vot_btnCandidati.setText("Press me"); //ia din baza de date numele
