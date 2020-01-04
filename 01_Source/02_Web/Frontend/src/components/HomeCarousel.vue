@@ -26,7 +26,25 @@
                 </v-card>
               </v-flex>
             </div>
+            <div v-if ="event.eventTitle === 'Parliamentary'" class="PartiesCard" >
+              <v-flex
+                xs12
+                sm6
+                md12
+                v-for="party in event.eventParties"
+                :key="party.name"
+              >
+                <v-card class="mx-auto" max-width="344">
+                  <v-img class="white--text align-end" height="200px" :src="party.logo"></v-img>
 
+                  <v-card-title class="black--text">{{party.name}}</v-card-title>
+
+                  <v-card-text class="text--primary">
+                    <div>{{party.description}}</div>
+                  </v-card-text>
+                </v-card>
+              </v-flex>
+            </div>
              <div v-if ="event.eventTitle === 'Referendum'" class="QuestionsCard" >
               <v-flex
                 xs12
