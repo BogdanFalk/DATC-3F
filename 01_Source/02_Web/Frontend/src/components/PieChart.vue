@@ -7,17 +7,16 @@
 import ApexCharts from "apexcharts";
 export default {
   data() {
-    return {};
+    return {
+      data:{}
+    };
   },
-  mounted: function() {
-    var data = {};
+  mounted:function() {
     this.$root.$on("dataForPieChart", dataForPiechart => {
-      console.log("Ain't nobody got time for that");
+      console.log("Received data from HomeCarousel");
       console.log(dataForPiechart);
-      data = dataForPiechart;
-    });
-    setTimeout(() => {
-      var options = {
+      this.data = dataForPiechart;
+        var options = {
         chart: {
           type: "donut"
         },
@@ -25,8 +24,8 @@ export default {
         series: [],
         labels: []
       };
-      console.log("Data:" + data);
-      data.eventCandidates.forEach(candidate => {
+      console.log("Data:" + this.data);
+      this.data.eventCandidates.forEach(candidate => {
         options.series.push(candidate.numberVotes);
         options.labels.push(candidate.name);
       });
@@ -34,7 +33,10 @@ export default {
       var chart = new ApexCharts(document.querySelector("#PieChart"), options);
 
       chart.render();
-    }, 1500);
+    });
+  
+    
+    
   }
 };
 </script>

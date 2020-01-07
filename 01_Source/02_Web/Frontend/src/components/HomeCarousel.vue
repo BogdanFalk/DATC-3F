@@ -54,9 +54,15 @@
 
             <v-flex xs12 sm6 md4>
               <v-card class="statistics" v-if="event.eventTitle==='Referendum'">
+                <v-btn v-on:click="getDataForChart">Show statistic</v-btn>
                 <barChartQuestions></barChartQuestions>
               </v-card>
-              <v-card class="statistics" v-else>
+              <v-card class="statistics" v-if="event.eventTitle==='Parliamentary'">
+                <v-btn v-on:click="getDataForChart">Show statistic</v-btn>
+                <PieChartParties></PieChartParties>
+              </v-card>
+              <v-card class="statistics" v-if="event.eventTitle==='Presidentials'">
+                <v-btn v-on:click="getDataForChart">Show statistic</v-btn>
                 <PieChart></PieChart>
               </v-card>
             </v-flex>
@@ -69,85 +75,15 @@
 <script>
 /* eslint-disable no-alert, no-console, no-unused-vars */
 import PieChart from "../components/PieChart.vue";
+import PieChartParties from "../components/PieChartParties.vue";
 import barChartQuestions from "../components/barChartQuestions.vue";
 import axios from "axios";
 export default {
-  components: { barChartQuestions, PieChart },
+  components: { barChartQuestions, PieChart, PieChartParties },
   data() {
     return {
       colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
-      events: [
-        {
-          eventId: 1,
-          eventTitle: "Presidentials",
-          eventCandidates: [
-            {
-              id: 1,
-              name: "Klaus Iohannis",
-              face:
-                "https://mediacdn.libertatea.ro/unsafe/375x285/smart/filters:contrast(8):quality(80)/https://static4.libertatea.ro/wp-content/uploads/2014/11/klaus_04_146ab53f00.jpg",
-              party: "Party1",
-              description: "Candidates1Desc",
-              numberVotes: 22
-            },
-            {
-              id: 2,
-              name: "Viorica Dancila",
-              face:
-                "https://www.b1.ro/thumbs/landscape_big/2019/11/18/rezultate-alegeri-2019-exit-poll-alegeri-prezidentiale-2019-rezultate-bec-iohannis-sau-dancila-viorica-dancila-la-dna-401900.jpg",
-              party: "Party2",
-              description: "Candidates2Desc",
-              numberVotes: 50
-            },
-            {
-              id: 3,
-              name: "John China",
-              face: "https://semantic-ui.com/images/avatar2/large/molly.png",
-              party: "Party3",
-              description: "Candidates3Desc",
-              numberVotes: 17
-            }
-          ]
-        },
-        {
-          eventId: 2,
-          eventTitle: "Referendum",
-          Questions: [
-            {
-              questionId: 1,
-              questionTitle: "Qtitle 1?",
-              questionDetails: "Qdetails 1"
-            },
-            {
-              questionId: 2,
-              questionTitle: "Qtitle 2?",
-              questionDetails: "Qdetails 2"
-            }
-          ]
-        },
-        {
-          eventId: 3,
-          eventTitle: "Parliamentary",
-          eventParties: [
-            {
-              id: 1,
-              name: "PSD",
-              logo:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Partidul_Social_Democrat_logo.svg/1200px-Partidul_Social_Democrat_logo.svg.png",
-              description: "Candidates1Desc",
-              numberVotes: 22
-            },
-            {
-              id: 2,
-              name: "PNL",
-              face:
-                "https://upload.wikimedia.org/wikipedia/commons/2/24/National_Liberal_Party_Romania.png",
-              description: "Candidates2Desc",
-              numberVotes: 50
-            }
-          ]
-        }
-      ]
+      events: []
     };
   },
   methods: {
@@ -188,6 +124,8 @@ export default {
                     const newQuestion = {};
                     newQuestion.questionId = referendum.id;
                     newQuestion.questionTitle = referendum.question;
+                    newQuestion.questionAnswer_Votes_Yes = referendum.votes_yes;
+                    newQuestion.questionAnswer_Votes_No = referendum.votes_no;
                     newEvent.Questions.push(newQuestion);
                   });
                   events.push(newEvent);
@@ -217,16 +155,20 @@ export default {
             console.log(error);
           }
         );
+    },
+    getDataForChart() {
+      console.log("Emiting data for piechart");
+      this.$root.$emit("dataForPieChart", this.events[0]); //event candidates for Presidentials event
+      console.log("Emiting data for piechart Parties");
+      this.$root.$emit("dataForPieChartParties", this.events[1]); //event parties for Parliamentary
+      console.log("Emiting data for barchart referendum.");
+      this.$root.$emit("dataForBarChart", this.events[2]); // event questions votes
     }
   },
   created: async function() {
     this.getAllEvents();
-   
-      console.log("Emiting data for piechart");
-      await this.$root.$emit("dataForPieChart", this.events[0]);
-      
-   
-  }
+  },
+  mounted: function() {}
 };
 </script>
 

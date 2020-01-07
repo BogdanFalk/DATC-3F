@@ -10,29 +10,44 @@ const addNewUser = async (req, res) => {
       cnp,
     } = req.body;
 
-    let flag=true;
+    let flag = true;
     const banned = await bannedUser.findOne({
-      where:{
+      where: {
         cnp
       }
     })
-    if (banned !== null)
-    {
+    if (banned !== null) {
       flag = false;
     }
 
-    if(flag)
-    {
-      const newUser = await User.findOrCreate({
+    const user = await User.findOne({
+      where: {
         cnp
-      });
-      res.status(200).send("Can Vote");
+      }
+    })
+    console.log(user);
+    if (user !== null) {
+      if (flag) {
+        res.status(200).send("Can Vote");
+      }
+      else {
+        res.status(200).send("Can't Vote!")
+      }
     }
     else
     {
-      res.status(200).send("Can't Vote!")
+      if (flag) {
+        const newUser = await User.create({
+          cnp
+        });
+        console.log("adding");  
+        res.status(200).send("Can Vote And Added");
+      }
+      else {
+        res.status(200).send("Can't Vote!")
+      }
     }
-   
+
 
   } catch (err) {
     res.status(400).send({
@@ -46,10 +61,10 @@ const addNewUser = async (req, res) => {
 
 
 module.exports = {
-  '/addNewUser':{
-    post:{
-      action:addNewUser,
-      level:'public'
+  '/addNewUser': {
+    post: {
+      action: addNewUser,
+      level: 'public'
     }
   }
 

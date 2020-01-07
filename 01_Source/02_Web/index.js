@@ -9,8 +9,7 @@ const { sequelize } = require('./Backend/models')
 const config = require('./Backend/config/config.js')
 
 var logging = require(__dirname + "/Backend/logging.js")
-var serverAPIs = require(__dirname + "/Backend/serverAPIs.js")
-var serverDB = require(__dirname+ "/Backend/herokuClearDB.js")
+
 var serverMQTT = require(__dirname + "/Backend/herokuCloudMQTT.js")
 
 const PORT = config.port
@@ -42,12 +41,12 @@ sequelize.sync({ force: false,  logging: true } ) // { force: true } - To reset 
   })
 
 
-logging.GOD(`Voting is up ma dude, on Port:${PORT}`)
+logging.GOD(`Voting is up on Port:${PORT}`)
 logging.testLogging()
 
 app.use(express.json());
 app.use(serveStatic(__dirname + "/Frontend/dist"));
 
 
-serverAPIs.getContacts(app)
+
 // serverDB.connectToDB()
