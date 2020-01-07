@@ -39,7 +39,7 @@ const getReferendum = async (req, res) => {
 
 
 const addVote = async (req, res) => {
-    req.body.forEach(element => {
+    req.body.votes.forEach(element => {
         console.log(element.id + "this");
         updateVotes(element.id, element.vote);
     });
