@@ -39,6 +39,50 @@ const getCandidate = async (req, res) => {
 
 }
 
+const addVote = async (req, res) => {
+    if ("name" in req.body) {
+        votesNumber = 0;
+        const { name } = req.body;
+
+        try {
+            const result = await Candidate.findOne({
+                where: {
+                    name: name
+                }
+            })
+                .then(candidate => {
+                    console.log(candidate.name);
+                    console.log(candidate.votesIn);
+                    votesNumber = candidate.votesIn;
+                    console.log(votesNumber);
+                });
+
+
+
+        } catch (error) {
+            res.status(400).send("Error on Getting Initial Votes");
+        }
+
+        console.log(votesNumber);
+        try {
+            const result = await
+                Candidate.update(
+                    { votesIn: votesNumber + 1 },
+                    {
+                        where: {
+                            name: name
+                        }
+                    }
+
+                )
+            res.status(200).send("Vote Ok");
+        } catch (error) {
+            res.status(400).send("Error on Updating Vote +1");
+        }
+    }
+}
+
+
 
 
 //   const reg = async (req, res) => {
@@ -82,6 +126,14 @@ module.exports = {
             action: getCandidate,
             level: 'public'
         }
+    },
+    '/addVote':
+    {
+        post: {
+            action: addVote,
+            level: 'public'
+        }
     }
+
 
 }

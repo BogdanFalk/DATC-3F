@@ -6,8 +6,7 @@ const Sequelize = require('sequelize')
 
 const getParty = async (req, res) => {
 
-    if("id" in req.body)
-    {
+    if ("id" in req.body) {
         const { id } = req.body;
         Party.findOne({
             where: {
@@ -18,26 +17,69 @@ const getParty = async (req, res) => {
                 "face",
                 "description",
             ]
-    
+
         })
-        .then(party => {
-            logging.LOG(__filename, 21, "Party " + party)
-            
-            if (party !== null) {
-                res.status(200).send(party);
-            }
-            else {
-                res.status(400).send("Party Doesn't Exist");
-            }
-    
-        });
+            .then(party => {
+                logging.LOG(__filename, 21, "Party " + party)
+
+                if (party !== null) {
+                    res.status(200).send(party);
+                }
+                else {
+                    res.status(400).send("Party Doesn't Exist");
+                }
+
+            });
     }
-    else
-    {
+    else {
         res.status(400).send("Request missing required properties")
     }
 
 }
+
+const addVote = async (req, res) => {
+    if ("name" in req.body) {
+        votesNumber = 0;
+        const { name } = req.body;
+
+        try {
+            const result = await Party.findOne({
+                where: {
+                    name: name
+                }
+            })
+                .then(party => {
+                    console.log(party.name);
+                    console.log(party.votesIn);
+                    votesNumber = party.votesIn;
+                    console.log(votesNumber);
+                });
+
+
+
+        } catch (error) {
+            res.status(400).send("Error on Getting Initial Votes");
+        }
+
+        console.log(votesNumber);
+        try {
+            const result = await
+                Party.update(
+                    { votesIn: votesNumber + 1 },
+                    {
+                        where: {
+                            name: name
+                        }
+                    }
+
+                )
+            res.status(200).send("Vote Ok");
+        } catch (error) {
+            res.status(400).send("Error on Updating Vote +1");
+        }
+    }
+}
+
 
 
 
@@ -80,6 +122,13 @@ module.exports = {
 
         get: {
             action: getParty,
+            level: 'public'
+        }
+    },
+    '/addVote':
+    {
+        post: {
+            action: addVote,
             level: 'public'
         }
     }
