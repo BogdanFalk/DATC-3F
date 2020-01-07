@@ -38,7 +38,7 @@ const getEvent = async (req, res) => {
 }
 
 const getAllEventsWithAssociates = async (req, res) => {
-    var allEvents = [];
+    var allEvents = {};
     try {
         let eventPresident = await Event.findAll({
             where: {
@@ -78,7 +78,9 @@ const getAllEventsWithAssociates = async (req, res) => {
             ]
 
         })
-        allEvents.push(eventPresident, eventParliamentary, eventReferendum);
+        allEvents.eventPresident = eventPresident;
+        allEvents.eventParliamentary = eventParliamentary;
+        allEvents.eventReferendum = eventReferendum;
         if (allEvents.length == 0)
             throw "Event Doesn't Exist";
 
