@@ -38,18 +38,18 @@ const getParty = async (req, res) => {
 }
 
 const addVote = async (req, res) => {
-    if ("name" in req.body) {
+    if ("id" in req.body) {
         votesNumber = 0;
-        const { name } = req.body;
+        const { id } = req.body;
 
         try {
             const result = await Party.findOne({
                 where: {
-                    name: name
+                    id: id
                 }
             })
                 .then(party => {
-                    console.log(party.name);
+                    console.log(party.id);
                     console.log(party.votesIn);
                     votesNumber = party.votesIn;
                     console.log(votesNumber);
@@ -68,7 +68,7 @@ const addVote = async (req, res) => {
                     { votesIn: votesNumber + 1 },
                     {
                         where: {
-                            name: name
+                            id: id
                         }
                     }
 

@@ -40,18 +40,18 @@ const getCandidate = async (req, res) => {
 }
 
 const addVote = async (req, res) => {
-    if ("name" in req.body) {
+    if ("id" in req.body) {
         votesNumber = 0;
-        const { name } = req.body;
+        const { id } = req.body;
 
         try {
             const result = await Candidate.findOne({
                 where: {
-                    name: name
+                    id: id
                 }
             })
                 .then(candidate => {
-                    console.log(candidate.name);
+                    console.log(candidate.id);
                     console.log(candidate.votesIn);
                     votesNumber = candidate.votesIn;
                     console.log(votesNumber);
@@ -70,7 +70,7 @@ const addVote = async (req, res) => {
                     { votesIn: votesNumber + 1 },
                     {
                         where: {
-                            name: name
+                            id: id
                         }
                     }
 
