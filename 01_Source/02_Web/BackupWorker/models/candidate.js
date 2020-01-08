@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     })
     Candidate.associate = function(models) {
-        Candidate.belongsTo(models.Event, {foreignKey: 'EventId', as: 'Event'},{onDelete: 'cascade'}, {hooks: true})
+        Candidate.belongsTo(models.Event, {foreignKey: 'EventId', as: 'Event'})
     };
      
 

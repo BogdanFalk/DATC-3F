@@ -150,7 +150,15 @@
         </v-card-text>
       </v-card>
     </v-container>
-    <!-- <v-btn v-on:click="printEvents"></v-btn> -->
+    <!-- <v-btn v-on:click="printEvents"></v-btn> -->+
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="timeout"
+      >
+      <h3 class="notificationText">
+        {{ notificationText }}
+        </h3>
+      </v-snackbar>
   </v-content>
 </template>
 
@@ -164,6 +172,9 @@ export default {
       isLogged: false,
       email: "",
       password: "",
+      timeout:2000,
+      snackbar:false,
+      notificationText:"",
       event: {
         title: "",
         type: "",
@@ -180,7 +191,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("http://localhost:5000/api/adminUser/loginAdminUser", {
+        .post("https://voting-system-3f/api/adminUser/loginAdminUser", {
           email: this.email,
           password: this.password
         })
@@ -188,6 +199,9 @@ export default {
           console.log(response.data);
           if (response.data !== "Invalid Email or Password!") {
             this.isLogged = true;
+            localStorage.setItem("adminLogged",true);
+            this.notificationText="Login Successful";
+            this.snackbar=true;
           } else {
             alert("Invalid Email or Password");
           }
@@ -196,12 +210,30 @@ export default {
     registerEvent() {
       axios
         .post(
-          "http://localhost:5000/api/event/addEventWithAssociates",
+          "https://voting-system-3f/api/event/addEventWithAssociates",
           this.event
         )
         .then(response => {
           console.log(response.data);
+           this.notificationText=response.data;
+          this.snackbar=true;
         });
+    },
+    deleteEvent(){
+      axios
+      .post(
+        "https://voting-system-3f/api/event/deleteEventWithAssociates",
+        {
+          "name":this.event.title
+        }
+      )
+      .then(
+        response=>{
+          console.log(response.data);
+             this.notificationText=response.data;
+          this.snackbar=true;
+        }
+      )
     },
 
     incrementCandidates() {
@@ -264,5 +296,10 @@ export default {
 
 .v-application--wrap {
   background-color: white;
+}
+
+.notificationText{
+  text-align: center;
+  width:100%;
 }
 </style>

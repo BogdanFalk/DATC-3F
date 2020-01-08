@@ -25,8 +25,35 @@ export const router = new Router({
 })
 router.beforeEach((to, from, next) => {
 
-  
-    next();
+    // console.log(to.path);
+    if(to.path!="/dashboard")
+    {
+        let isAdminLogged = false;
+        if(localStorage.hasOwnProperty('adminLogged'))
+        {
+            console.log(localStorage.getItem("adminLogged"))
+        }
+     
+        isAdminLogged = localStorage.getItem("adminLogged");
+        console.log(isAdminLogged);
+        if(isAdminLogged == "false")
+        {
+            console.log("going to dashboard");
+            next('/dashboard');
+
+        }
+        else
+        {
+            next();
+        }
+    }
+    else
+    {
+        next();
+    }
+   
+
+ 
    
 }
 )

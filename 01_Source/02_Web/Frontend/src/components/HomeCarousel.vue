@@ -89,47 +89,48 @@ export default {
   methods: {
     getAllEvents() {
       axios
-        .post("http://localhost:5000/api/event/getAllEventsWithAssociates")
+        .post("https://voting-system-3f/api/event/getAllEventsWithAssociates")
         .then(
           response => {
             var events = [];
             console.log(response);
-            response.data.forEach(type => {
-              console.log(type);
-              type.forEach(event => {
-                console.log(event.type);
-                if (event.type === "presidential") {
-                  const newEvent = {};
-                  newEvent.eventId = event.id;
-                  newEvent.eventTitle = "Presidentials";
-                  newEvent.eventCandidates = [];
-                  event.candidate.forEach(candidate => {
-                    const newCandidate = {};
-                    newCandidate.id = candidate.id;
-                    newCandidate.name = candidate.name;
-                    newCandidate.face = candidate.face;
-                    newCandidate.party = candidate.party;
-                    newCandidate.numberVotes =
-                      candidate.votesOut + candidate.votesIn;
-                    newEvent.eventCandidates.push(newCandidate);
-                  });
-                  events.push(newEvent);
-                }
-                if (event.type === "referendum") {
-                  const newEvent = {};
-                  newEvent.eventId = event.id;
-                  newEvent.eventTitle = "Referendum";
-                  newEvent.Questions = [];
-                  event.referendum.forEach(referendum => {
-                    const newQuestion = {};
-                    newQuestion.questionId = referendum.id;
-                    newQuestion.questionTitle = referendum.question;
-                    newQuestion.questionAnswer_Votes_Yes = referendum.votes_yes;
-                    newQuestion.questionAnswer_Votes_No = referendum.votes_no;
-                    newEvent.Questions.push(newQuestion);
-                  });
-                  events.push(newEvent);
-                }
+            response.data.eventPresident.forEach(event => {
+              if (event.type === "presidential") {
+                const newEvent = {};
+                newEvent.eventId = event.id;
+                newEvent.eventTitle = "Presidentials";
+                newEvent.eventCandidates = [];
+                event.candidate.forEach(candidate => {
+                  const newCandidate = {};
+                  newCandidate.id = candidate.id;
+                  newCandidate.name = candidate.name;
+                  newCandidate.face = candidate.face;
+                  newCandidate.party = candidate.party;
+                  newCandidate.numberVotes =
+                    candidate.votesOut + candidate.votesIn;
+                  newEvent.eventCandidates.push(newCandidate);
+                });
+                events.push(newEvent);
+              }
+            });
+            response.data.eventReferendum.forEach(event => {
+              if (event.type === "referendum") {
+                const newEvent = {};
+                newEvent.eventId = event.id;
+                newEvent.eventTitle = "Referendum";
+                newEvent.Questions = [];
+                event.referendum.forEach(referendum => {
+                  const newQuestion = {};
+                  newQuestion.questionId = referendum.id;
+                  newQuestion.questionTitle = referendum.question;
+                  newQuestion.questionAnswer_Votes_Yes = referendum.votes_yes;
+                  newQuestion.questionAnswer_Votes_No = referendum.votes_no;
+                  newEvent.Questions.push(newQuestion);
+                });
+                events.push(newEvent);
+              }
+            });
+            response.data.eventParliamentary.forEach(event =>  {
                 if (event.type === "parliamentary") {
                   const newEvent = {};
                   newEvent.eventId = event.id;
@@ -146,8 +147,15 @@ export default {
                   });
                   events.push(newEvent);
                 }
-              });
-            });
+            })
+            // response.data.forEach(type => {
+            //   console.log(type);
+            //   type.forEach(event => {
+            //     console.log(event.type);
+
+              
+            //   });
+            // });
             console.log(events);
             this.events = events;
           },
@@ -160,9 +168,9 @@ export default {
       console.log("Emiting data for piechart");
       this.$root.$emit("dataForPieChart", this.events[0]); //event candidates for Presidentials event
       console.log("Emiting data for piechart Parties");
-      this.$root.$emit("dataForPieChartParties", this.events[1]); //event parties for Parliamentary
+      this.$root.$emit("dataForPieChartParties", this.events[2]); //event parties for Parliamentary
       console.log("Emiting data for barchart referendum.");
-      this.$root.$emit("dataForBarChart", this.events[2]); // event questions votes
+      this.$root.$emit("dataForBarChart", this.events[1]); // event questions votes
     }
   },
   created: async function() {

@@ -22,6 +22,14 @@ export default {
   data: () => ({
     //
   }),
+
+  beforeCreate: function () {
+    // `this` points to the vm instance
+    localStorage.setItem("adminLogged",false);
+  }
+    
+  
+  
 };
 </script>
 

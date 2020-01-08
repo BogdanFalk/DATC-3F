@@ -12,21 +12,8 @@ var client = mqtt.connect(mqtt_url, {
   password: auth[1]
 });
 
-client.on('connect', function() { // When connected
 
-  // subscribe to a topic
-  client.subscribe('api/mqtt/vote', function() {
-    // when a message arrives, do something with itd
-    client.on('message', function(topic, message, packet) {
-      logging.LOG(__filename,21,"Received '" + logging.textColor.Blue +message + logging.textColor.Green+ "' on '" + topic + "'");
-    });
-  });
-
-  // publish a message to a topic
-  client.publish('api/mqtt/vote', 'my message', function() {
-    logging.LOG(__filename,27,"Message is published");
-    // client.end(); // Close the connection when published
-  });
-
-  
-});
+module.exports =
+{
+  client
+}

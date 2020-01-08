@@ -17,13 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       }
-    },
-   )
+    })
     Event.associate = function (models)
     {
-      Event.hasMany(models.Candidate,{as:"candidate"},{onDelete: 'cascade'}, {hooks: true})
-      Event.hasMany(models.Party,{as:"party"},{onDelete: 'CASCADE'}, {hooks: true})
-      Event.hasMany(models.Referendum,{as:"referendum"},{onDelete: 'CASCADE'}, {hooks: true})
+      Event.hasMany(models.Candidate,{as:"candidate"})
+      Event.hasMany(models.Party,{as:"party"})
+      Event.hasMany(models.Referendum,{as:"referendum"})
     }
     // User.associate = function (models) {
     //   User.belongsToMany(models.Post, {
