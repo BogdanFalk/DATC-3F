@@ -19,12 +19,8 @@ export const router = new Router({
             path: '/dashboard',
             name: 'Admin',
             component: Admin
-        },
-        {
-            path: '/*',
-            name: 'Admin',
-            component: Admin
         }
+        
     ]
 
 })
