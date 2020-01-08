@@ -89,7 +89,7 @@ export default {
   methods: {
     getAllEvents() {
       axios
-        .post("https://voting-system-3f/api/event/getAllEventsWithAssociates")
+        .post("/api/event/getAllEventsWithAssociates")
         .then(
           response => {
             var events = [];

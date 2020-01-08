@@ -191,7 +191,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("https://voting-system-3f/api/adminUser/loginAdminUser", {
+        .post("/api/adminUser/loginAdminUser", {
           email: this.email,
           password: this.password
         })
@@ -210,7 +210,7 @@ export default {
     registerEvent() {
       axios
         .post(
-          "https://voting-system-3f/api/event/addEventWithAssociates",
+          "/api/event/addEventWithAssociates",
           this.event
         )
         .then(response => {
@@ -222,7 +222,7 @@ export default {
     deleteEvent(){
       axios
       .post(
-        "https://voting-system-3f/api/event/deleteEventWithAssociates",
+        "/api/event/deleteEventWithAssociates",
         {
           "name":this.event.title
         }
