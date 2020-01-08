@@ -8,7 +8,7 @@ import Admin from './views/Admin.vue'
 Vue.use(Router)
 /* eslint-disable */
 export const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {
             path: '/',
